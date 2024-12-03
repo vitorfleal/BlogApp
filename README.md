@@ -70,29 +70,37 @@ flowchart TD
     F --> C
     E -- Não --> J[Exibir erro de autenticação]
     
-    C -- Criar --> K{Deseja cadastrar a postagem?}
-    K -- Criar --> L{Cadastro válido?}
-    L -- Sim --> M{Postagem cadastrada com sucesso?}
-    M -- Sim --> N[Postagem cadastrada com sucesso!]
-    N --> O[Enviar notificação via WebSocket]
-    O --> P{Usuários Conectados?}
-    P -- Sim --> Q[Sistema de WebSocket distribui a notificação]
-    Q --> R[Todos os usuários recebem a notificação]
-    R --> Fim
-    P -- Não --> S[Sem usuários conectados]
-    M -- Não --> T[Exibir erro de cadastro]
-    L -- Não --> U[Exibir erro de validação de cadastro]
+    C -- Obter todas as postagens --> K{Usuário precisa estar logado?}
+    K -- Não --> L[Exibir todas as postagens]
+    K -- Sim --> M[Exigir todas as postagens]
     
-    C -- Editar --> V{Deseja editar a postagem?}
-    V -- Sim --> W{Edição válida?}
-    W -- Sim --> X[Postagem editada com sucesso!]
+    C -- Obter postagem por ID --> N{Usuário precisa estar logado?}
+    N -- Não --> O[Exibir erro de autenticação]
+    N -- Sim --> P[Exibir postagem por ID]
+
+    C -- Criar --> Q{Deseja cadastrar a postagem?}
+    Q -- Criar --> R{Cadastro válido?}
+    R -- Sim --> S{Postagem cadastrada com sucesso?}
+    S -- Sim --> T[Postagem cadastrada com sucesso!]
+    T --> U[Enviar notificação via WebSocket]
+    U --> V{Usuários Conectados?}
+    V -- Sim --> W[Sistema de WebSocket distribui a notificação]
+    W --> X[Todos os usuários recebem a notificação]
     X --> Fim
-    W -- Não --> Y[Exibir erro de edição]
+    V -- Não --> Y[Sem usuários conectados]
+    S -- Não --> Z[Exibir erro de cadastro]
+    R -- Não --> AA[Exibir erro de validação de cadastro]
     
-    C -- Excluir --> Z{Deseja excluir a postagem?}
-    Z -- Sim --> AA[Postagem excluída com sucesso!]
-    AA --> Fim
-    Z -- Não --> AB[Exibir erro de exclusão]
+    C -- Editar --> AB{Deseja editar a postagem?}
+    AB -- Sim --> AC{Edição válida?}
+    AC -- Sim --> AD[Postagem editada com sucesso!]
+    AD --> Fim
+    AC -- Não --> AE[Exibir erro de edição]
+    
+    C -- Excluir --> AF{Deseja excluir a postagem?}
+    AF -- Sim --> AG[Postagem excluída com sucesso!]
+    AG --> Fim
+    AF -- Não --> AH[Exibir erro de exclusão]
 ```
 
 ### Diagrama de Sequência
