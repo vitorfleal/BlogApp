@@ -210,8 +210,8 @@ Após configurar a aplicação e rodá-la localmente, você pode realizar testes
 
 #### 2.3 **Teste de Notificação via WebSocket**
 
-1. Ao executar a aplicação pelo Visual Studio 2022, será aberta uma aba do navegador com a documentação Swagger da API e uma janela de console.
-2. Na aba aberta, crie uma nova postagem.
+1. Ao executar a aplicação com o comando ```bash dotnet run``` com terminal aberto dentro da pasta src/adapters/primary/BlogApp.API, será aberta uma janela de console com as informações da URL para acesso do Swagger no navegador e com o status da conexão do SignalR.
+2. Na aba aberta por meio da url `https://localhost:7070`, crie uma nova postagem.
 3. Na janela de console aberto verifique se a notificação via WebSocket foi recebida em tempo real.
    - O **WebSocket** deve notificar na saída do console aberto do usuário sobre a nova postagem instantaneamente.
 
